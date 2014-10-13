@@ -79,15 +79,13 @@ IF(UNIX)
 	set(CMAKE_C_FLAGS -fPIC)
 ENDIF(UNIX) 
 
-add_library (pixman-1_core OBJECT  ${SOURCES} ${HEADERS})
-
 if(BUILD_SHARED)
-    add_library(pixman-1 SHARED $<TARGET_OBJECTS:pixman-1_core>)
+    add_library(pixman-1 SHARED ${SOURCES} ${HEADERS})
     install(TARGETS pixman-1 RUNTIME DESTINATION bin ARCHIVE DESTINATION lib LIBRARY DESTINATION lib)
 endif()
 
 if(BUILD_STATIC)
-    add_library(pixman-1_static STATIC $<TARGET_OBJECTS:pixman-1_core>)
+    add_library(pixman-1_static STATIC ${SOURCES} ${HEADERS})
     set_target_properties(pixman-1_static PROPERTIES OUTPUT_NAME pixman-1)
     install(TARGETS pixman-1_static RUNTIME DESTINATION bin ARCHIVE DESTINATION lib LIBRARY DESTINATION lib)
 endif(BUILD_STATIC)
