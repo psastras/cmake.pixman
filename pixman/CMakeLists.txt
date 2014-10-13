@@ -87,8 +87,9 @@ if(BUILD_SHARED)
 endif()
 
 if(BUILD_STATIC)
-    add_library(pixman-1 STATIC $<TARGET_OBJECTS:pixman-1_core>)
-    install(TARGETS pixman-1 RUNTIME DESTINATION bin ARCHIVE DESTINATION lib LIBRARY DESTINATION lib)
+    add_library(pixman-1_static STATIC $<TARGET_OBJECTS:pixman-1_core>)
+    set_target_properties(pixman-1_static PROPERTIES OUTPUT_NAME pixman-1)
+    install(TARGETS pixman-1_static RUNTIME DESTINATION bin ARCHIVE DESTINATION lib LIBRARY DESTINATION lib)
 endif(BUILD_STATIC)
 
 install(FILES pixman.h ${CMAKE_CURRENT_BINARY_DIR}/pixman-version.h DESTINATION include/pixman-1)
